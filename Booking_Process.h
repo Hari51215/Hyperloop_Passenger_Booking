@@ -85,9 +85,6 @@ class hyperloop
                     int age = Passenger_queue.front().Passenger_age; 
                     char destination = Passenger_queue.front().Passenger_destination;
 
-                    cout<<"Name : "<<name<<endl;
-                    cout<<"Destination : "<<destination<<endl;
-
                     priority_queue< pair<int,int> , vector<pair<int,int>> , greater<pair<int,int>>> pq;
 
                     vector<int> short_distance (Vertex+1, INT32_MAX);
@@ -135,7 +132,7 @@ class hyperloop
                     cout<<name<<" ";
                     while(!path.empty())
                     {
-                        if(path.size()==1) cout<<path.top();
+                        if(path.size()==1) cout<<path.top()<<endl;
                         else cout<<path.top()<<"->";
                         path.pop();
                     }
