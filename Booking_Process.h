@@ -10,8 +10,8 @@
 using namespace std;
 
 class hyperloop;
-int short_path[]={1};
 const int Vertex = 5;
+int short_path[Vertex+1] = {-1};
 vector <hyperloop> Passenger;
 queue <hyperloop> Passenger_queue;
 vector<pair<int,int>> graph[Vertex+1];
@@ -99,6 +99,15 @@ class hyperloop
             }
         }
 
+        void printPath(int short_path[], int j)
+        {
+            if (short_path[j] == -1)
+                return;
+            printPath(short_path, short_path[j]);
+            char p = j+64;
+            cout<<p<<" ";
+        }
+
         int Start_pod()
         {
             int Passenger_count;
@@ -114,7 +123,7 @@ class hyperloop
                     char destination = Passenger_queue.front().Passenger_destination;
                     priority_queue< pair<int,int> , vector<pair<int,int>> , greater<pair<int,int>>> pq;
                     vector<int> short_distance (Vertex+1,INT_MAX);
-                    
+
                     short_distance[m[Source_station]]=0;
                     pq.push(make_pair(0,m[Source_station]));
 
@@ -131,6 +140,7 @@ class hyperloop
                             int graph_distance = it->second;
                             if(short_distance[graph_vertex] > short_distance[pq_vertex] + graph_distance)
                             {
+                                short_path[graph_vertex] = pq_vertex;
                                 short_distance[graph_vertex] = short_distance[pq_vertex] + graph_distance;
                                 pq.push(make_pair(short_distance[graph_vertex] , graph_vertex));
                             }
@@ -140,27 +150,13 @@ class hyperloop
                     for(int i=1;i<=Vertex; i++)
                     {
                         if(i==m[destination])
-                            cout<<short_distance[i];
+                        {
+                            cout<<short_distance[i]<<endl;
+                            cout<<name<<" ";
+                            printPath(short_path, i);
+                        }
                     }
                     cout<<endl;
-
-                    char dest_station=destination;
-                    stack<char> path;
-                    while(short_path[m[destination]]!=m[Source_station])
-                    {
-                        path.push(destination);
-                        m[destination]=short_path[destination];
-                    }
-                    path.push(destination);
-                    path.push(Source_station);
-
-                    cout<<name<<" ";
-                    while(!path.empty())
-                    {
-                        if(path.size()==1) cout<<path.top()<<endl;
-                        else cout<<path.top()<<"->";
-                        path.pop();
-                    }
                     Passenger_queue.pop();
                 }
             }
