@@ -112,10 +112,9 @@ class hyperloop
                     string name = Passenger_queue.front().Passenger_name;
                     int age = Passenger_queue.front().Passenger_age; 
                     char destination = Passenger_queue.front().Passenger_destination;
-
                     priority_queue< pair<int,int> , vector<pair<int,int>> , greater<pair<int,int>>> pq;
-
                     vector<int> short_distance (Vertex+1,INT_MAX);
+                    
                     short_distance[m[Source_station]]=0;
                     pq.push(make_pair(0,m[Source_station]));
 
@@ -137,7 +136,6 @@ class hyperloop
                             }
                         }
                     }
-
                     cout<<"The Shorest distance from Source Station : "<<Source_station<<" and Passenger Destination : "<<destination<<" is = ";
                     for(int i=1;i<=Vertex; i++)
                     {
@@ -147,7 +145,6 @@ class hyperloop
                     cout<<endl;
 
                     char dest_station=destination;
-
                     stack<char> path;
                     while(short_path[m[destination]]!=m[Source_station])
                     {
