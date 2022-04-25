@@ -27,23 +27,7 @@ int main()
                     break;
             case 2:
                     if(check==1)
-                    {
-                        cout<<"Enter the Passengers Count : ";
-                        cin>>P_count;
-                        for(int i=0;i<P_count;++i)
-                        {
-                            cout<<endl;
-                            cout<<"Enter the Passenger Name : ";
-                            cin>>P_name;
-                            cout<<"Enter the Passenger Age : ";
-                            cin>>P_age;
-                            cout<<"Enter the Passenger Destination : ";
-                            cin>>P_destination;
-
-                            Passenger.push_back(hyperloop(P_name,P_age,P_destination));
-                        }
                         pickup.Add_passenger();
-                    }
                     break;
             case 3:
                     if(check==1)
