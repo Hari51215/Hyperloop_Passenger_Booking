@@ -6,6 +6,7 @@ int main()
     int N_route,P_age,P_count;
     char S_station,P_destination;
     int check=0,check_queue=1;
+
     cout<<endl<<"####__#### Hyperloop Passenger Booking ####__####"<<endl;
     map<string,int> command = {{"INIT",1},{"ADD_PASSENGER",2},{"START_POD",3},{"PRINT_Q",4},{"EXIT",5}};
 
@@ -17,6 +18,7 @@ int main()
         cout<<"INIT"<<endl<<"ADD_PASSENGER"<<endl<<"START_POD"<<endl<<"PRINT_Q"<<endl<<"EXIT"<<endl<<endl;
         cout<<"Enter your command : ";
         cin>>input;
+        
         switch(command[input])
         {
             case 1:
