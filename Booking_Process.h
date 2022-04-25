@@ -2,6 +2,7 @@
 #include<queue>
 #include<vector>
 #include<stack>
+#include<climits>
 #include<vector>
 #include<string>
 #include<map>
@@ -87,7 +88,7 @@ class hyperloop
 
                     priority_queue< pair<int,int> , vector<pair<int,int>> , greater<pair<int,int>>> pq;
 
-                    vector<int> short_distance (Vertex+1, INT32_MAX);
+                    vector<int> short_distance (Vertex+1,INT_MAX);
                     short_distance[m[Source_station]]=0;
                     pq.push(make_pair(0,m[Source_station]));
 
