@@ -49,6 +49,33 @@ class hyperloop
 
         void Add_passenger()
         {
+            for(int i=0; i<Passenger.size(); i++)
+            {
+                Passenger_queue.pop();
+            }
+            
+            int P_count,P_age;
+            char P_destination;
+            string P_name;
+            cout<<"Enter the Passengers Count : ";
+            cin>>P_count;
+            for(int i=0;i<P_count;++i)
+            {
+                cout<<endl;
+                cout<<"Enter the Passenger Name : ";
+                cin>>P_name;
+                cout<<"Enter the Passenger Age : ";
+                cin>>P_age;
+                cout<<"Enter the Passenger Destination : ";
+                cin>>P_destination;
+
+                Passenger.push_back(hyperloop(P_name,P_age,P_destination));
+            }
+            Queue_sort();
+        }
+
+        void Queue_sort()
+        {
             hyperloop temp;
             int min_index;
             for (int i = 0; i < Passenger.size(); i++)
@@ -148,7 +175,7 @@ class hyperloop
         }
 
         void Print_queue()
-        {
+        {        
             cout<<Passenger_queue.size()<<endl;
             Print(Passenger_queue);
         }
