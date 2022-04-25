@@ -8,7 +8,7 @@
 
 using namespace std;
 class hyperloop;
-int parent[]={1};
+int short_path[]={1};
 const int Vertex = 5;
 vector <hyperloop> Passenger;
 queue <hyperloop> Passenger_queue;
@@ -124,10 +124,10 @@ class hyperloop
                     char dest_station=destination;
 
                     stack<char> path;
-                    while(parent[m[destination]]!=m[Source_station])
+                    while(short_path[m[destination]]!=m[Source_station])
                     {
                         path.push(destination);
-                        m[destination]=parent[destination];
+                        m[destination]=short_path[destination];
                     }
                     path.push(destination);
                     path.push(Source_station);
