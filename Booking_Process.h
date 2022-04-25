@@ -7,6 +7,7 @@
 #include<map>
 
 using namespace std;
+
 class hyperloop;
 int short_path[]={1};
 const int Vertex = 5;
@@ -59,7 +60,6 @@ class hyperloop
                         min_index = j;
                     }
                 }
-
                 temp = Passenger[min_index];
                 Passenger[min_index] = Passenger[i];
                 Passenger[i] = temp;
