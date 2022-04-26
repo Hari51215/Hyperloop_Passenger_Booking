@@ -10,18 +10,18 @@
 using namespace std;
 
 class hyperloop;
-const int Vertex = 5;
+const int Vertex = 26;
 int short_path[Vertex+1] = {-1};
 vector <hyperloop> Passenger;
 queue <hyperloop> Passenger_queue;
 vector<pair<int,int>> graph[Vertex+1];
-map<char,int> m = {{'A',1}, {'B',2}, {'C',3}, {'D',4}, {'E',5}};
 
 class hyperloop
 {
     int Interconnecting_routes, Distance, Passenger_age;
     char Source_station, Starting_station, Ending_station, Passenger_destination;
     string Passenger_name;
+    int So_station,St_station,En_station;
 
     public:
         hyperloop(){}
@@ -41,14 +41,19 @@ class hyperloop
             for(int i=0;i<Interconnecting_routes;++i)
             {
                 cin>>Starting_station>>Ending_station>>Distance;
-                graph[m[Starting_station]].push_back(make_pair(m[Ending_station],Distance));
-                graph[m[Ending_station]].push_back(make_pair(m[Starting_station],Distance));
+
+                St_station = (int) (Starting_station-64);
+                En_station = (int) (Ending_station-64);
+
+                graph[St_station].push_back(make_pair(En_station,Distance));
+                graph[En_station].push_back(make_pair(St_station,Distance));
             }
             return 1;
         }
 
         void Add_passenger()
         {
+            cout<<endl;
             for(int i=0; i<Passenger.size(); i++)
             {
                 Passenger_queue.pop();
@@ -124,8 +129,10 @@ class hyperloop
                     priority_queue< pair<int,int> , vector<pair<int,int>> , greater<pair<int,int>>> pq;
                     vector<int> short_distance (Vertex+1,INT_MAX);
 
-                    short_distance[m[Source_station]]=0;
-                    pq.push(make_pair(0,m[Source_station]));
+                    So_station = (int) (Source_station-64);
+
+                    short_distance[So_station]=0;
+                    pq.push(make_pair(0,So_station));
 
                     while(!pq.empty())
                     {
@@ -146,10 +153,11 @@ class hyperloop
                             }
                         }
                     }
+                    int Pa_destination = (int) destination-64;
                     cout<<"The Shorest distance from Source Station : "<<Source_station<<" and Passenger Destination : "<<destination<<" is = ";
                     for(int i=1;i<=Vertex; i++)
                     {
-                        if(i==m[destination])
+                        if(i==Pa_destination)
                         {
                             cout<<short_distance[i]<<endl;
                             cout<<name<<" ";
