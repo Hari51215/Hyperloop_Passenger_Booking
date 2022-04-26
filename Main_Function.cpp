@@ -6,16 +6,18 @@ int main()
     int N_route,P_age,P_count;
     char S_station,P_destination;
     int check=0,check_queue=1;
-
-    cout<<endl<<"####__#### Hyperloop Passenger Booking ####__####"<<endl;
     map<string,int> command = {{"INIT",1},{"ADD_PASSENGER",2},{"START_POD",3},{"PRINT_Q",4},{"EXIT",5}};
 
+    cout<<endl<<"####__#### Hyperloop Passenger Booking ####__####"<<endl;
+
     hyperloop pickup;
+
     while(1)
     {
         cout<<endl<<"__________________________________________________________________________________________"<<endl;
         cout<<"The Available Command Words are..,"<<endl<<endl;
         cout<<"INIT"<<endl<<"ADD_PASSENGER"<<endl<<"START_POD"<<endl<<"PRINT_Q"<<endl<<"EXIT"<<endl<<endl;
+        
         cout<<"Enter your command : ";
         cin>>input;
         
@@ -49,8 +51,10 @@ int main()
                     cout<<"Invalid Command, Choose the Available Commands Only."<<endl;
                     break;
         }
+
         if(check==0)
             cout<<"You can't give other command without Initializing the 'INIT' command."<<endl;   
     }
+    
     return 0;
 }
