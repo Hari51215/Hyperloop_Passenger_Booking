@@ -28,6 +28,7 @@ int main()
                     check = pickup.Init(N_route,S_station);
                     break;
             case 2:
+                    cout<<endl;
                     if(check==1)
                         pickup.Add_passenger();
                     break;
