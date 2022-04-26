@@ -1,10 +1,8 @@
 #include<iostream>
 #include<queue>
 #include<vector>
-#include<stack>
-#include<climits>
-#include<vector>
 #include<string>
+#include <climits>
 #include<map>
 
 using namespace std;
@@ -12,6 +10,7 @@ using namespace std;
 class hyperloop;
 const int Vertex = 26;
 int short_path[Vertex+1] = {-1};
+
 vector <hyperloop> Passenger;
 queue <hyperloop> Passenger_queue;
 vector<pair<int,int>> graph[Vertex+1];
@@ -62,8 +61,10 @@ class hyperloop
             int P_count,P_age;
             char P_destination;
             string P_name;
+
             cout<<"Enter the Passengers Count : ";
             cin>>P_count;
+
             for(int i=0;i<P_count;++i)
             {
                 cout<<endl;
@@ -83,6 +84,7 @@ class hyperloop
         {
             hyperloop temp;
             int min_index;
+
             for (int i = 0; i < Passenger.size(); i++)
             {
                 min_index=i;
@@ -139,22 +141,26 @@ class hyperloop
                         int pq_distance = pq.top().first;
                         int pq_vertex = pq.top().second;
                         pq.pop();
-
                         vector<pair<int,int>> :: iterator it;
+
                         for(it=graph[pq_vertex].begin(); it!=graph[pq_vertex].end(); it++)
                         {
                             int graph_vertex = it->first;
                             int graph_distance = it->second;
+
                             if(short_distance[graph_vertex] > short_distance[pq_vertex] + graph_distance)
                             {
                                 short_path[graph_vertex] = pq_vertex;
+
                                 short_distance[graph_vertex] = short_distance[pq_vertex] + graph_distance;
                                 pq.push(make_pair(short_distance[graph_vertex] , graph_vertex));
                             }
                         }
                     }
+
                     int Pa_destination = (int) destination-64;
                     cout<<"The Shorest distance from Source Station : "<<Source_station<<" and Passenger Destination : "<<destination<<" is = ";
+
                     for(int i=1;i<=Vertex; i++)
                     {
                         if(i==Pa_destination)
